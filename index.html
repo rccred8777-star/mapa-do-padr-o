@@ -892,8 +892,11 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
     var livros=prod.filter(function(p){ return cat(p).indexOf("livro")>=0; });
     var lvg=document.querySelector(".livros-grid");
     if(lvg&&livros.length){ lvg.innerHTML=livros.map(function(p){ var capa=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"background:linear-gradient(160deg,#4A1A80,#C19B3C)"; return '<div class="livro-card"><div class="livro-capa" style="'+capa+'"><div><div class="livro-capa-title">'+(p.nome||"")+'</div><div class="livro-capa-author">Eliane Barboza da Silva</div></div></div><div class="livro-body"><p>'+(p.texto||"")+'</p><div class="livro-btns"><a href="'+(p.link_venda||p.whatsapp||wa(p.nome,"o livro"))+'" target="_blank" rel="noopener" class="btn-sm btn-sm-gold">Comprar '+(p.preco||"")+'</a></div></div></div>'; }).join(""); }
-    // Capa mostra só DESTAQUES (marcados no painel); loja completa em /loja.html
-    var destaques=prod.filter(function(p){ return p.destaque && cat(p).indexOf("mentoria")<0; }).slice(0,4);
+    // Capa mostra DESTAQUES marcados no painel; sem marcação, cai pros produtos (nunca vazia). Loja completa em /loja.html
+    var fisicos=prod.filter(function(p){ return cat(p).indexOf("mentoria")<0; });
+    var destaques=fisicos.filter(function(p){ return p.destaque; });
+    if(!destaques.length) destaques=fisicos;
+    destaques=destaques.slice(0,4);
     var lg=document.querySelector(".loja-grid");
     if(lg){ lg.innerHTML=destaques.map(function(p){ var img=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"font-size:42px"; return '<div class="produto-card"><div class="produto-img" style="'+img+'">'+(p.arquivo?"":"💎")+'</div><div class="produto-body"><div class="produto-cat">'+(p.categoria||"")+'</div><div class="produto-name">'+(p.nome||"")+'</div>'+(p.texto?'<p class="produto-desc">'+p.texto+'</p>':"")+'<div class="produto-price">'+(p.preco||"")+'</div><a href="'+(p.link_venda||p.whatsapp||wa(p.nome))+'" target="_blank" rel="noopener" class="btn-buy" style="display:block;text-align:center;text-decoration:none">'+(p.link_venda?"Comprar agora":"Comprar pelo WhatsApp")+'</a></div></div>'; }).join(""); }
     var kit=prod.filter(function(p){ return cat(p).indexOf("kit")>=0; })[0];
