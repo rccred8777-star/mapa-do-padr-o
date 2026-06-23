@@ -49,6 +49,7 @@
     <div id="f-cat" class="hide"><label>Categoria</label><select id="cat"><option>Livro</option><option>Semijoia</option><option>Kit</option><option>Mentoria</option></select></div>
     <div id="f-preco" class="hide"><label>Preço</label><input id="preco" placeholder="Ex: R$120"></div>
     <div id="f-link" class="hide"><label>Link de venda (plataforma) — opcional</label><input id="link_venda" placeholder="https://... (Kiwify/Hotmart). Vazio = botão vai pro WhatsApp"></div>
+    <div id="f-destaque" class="hide"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input id="destaque" type="checkbox" style="width:auto;margin:0"> ⭐ Destaque na capa (aparece na página principal)</label></div>
     <div id="f-texto"><label>Texto / descrição</label><textarea id="texto"></textarea></div>
     <button id="savebtn" onclick="salvar()">Adicionar</button>
     <button class="ghost hide" id="cancelbtn" onclick="cancelar()">Cancelar edição</button>
@@ -71,17 +72,17 @@ async function entrar(){const{error}=await sb.auth.signInWithPassword({email:ema
 async function sair(){await sb.auth.signOut();location.reload();}
 
 function tab(t){CUR=t;cancelar();document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
-  ['f-preco','f-cat','f-link'].forEach(id=>document.getElementById(id).classList.toggle('hide',t!=='produto'));
+  ['f-preco','f-cat','f-link','f-destaque'].forEach(id=>document.getElementById(id).classList.toggle('hide',t!=='produto'));
   document.getElementById('f-secao').classList.toggle('hide',t!=='foto');
   formtitle.textContent={depoimento:'Novo depoimento',produto:'Novo produto',foto:'Nova foto'}[t];carregar();}
 
 function editar(id){EDIT=ITEMS.find(x=>x.id===id);if(!EDIT)return;const d=EDIT.data||{};
   nome.value=d.nome||'';texto.value=d.texto||'';if(preco)preco.value=d.preco||'';if(cat&&d.categoria)cat.value=d.categoria;
-  if(secao&&d.categoria)secao.value=d.categoria;if(link_venda)link_venda.value=d.link_venda||'';
+  if(secao&&d.categoria)secao.value=d.categoria;if(link_venda)link_venda.value=d.link_venda||'';if(destaque)destaque.checked=!!d.destaque;
   curfile.textContent=d.arquivo?'📎 arquivo atual (deixe vazio pra manter, ou suba um novo)':'';
   savebtn.textContent='Salvar alterações';cancelbtn.classList.remove('hide');formtitle.textContent='Editando: '+(d.nome||'item');
   window.scrollTo(0,0);}
-function cancelar(){EDIT=null;nome.value='';texto.value='';if(preco)preco.value='';if(link_venda)link_venda.value='';arquivo.value='';curfile.textContent='';
+function cancelar(){EDIT=null;nome.value='';texto.value='';if(preco)preco.value='';if(link_venda)link_venda.value='';if(destaque)destaque.checked=false;arquivo.value='';curfile.textContent='';
   savebtn.textContent='Adicionar';cancelbtn.classList.add('hide');msg.innerHTML='';}
 
 async function salvar(){msg.innerHTML='';const file=arquivo.files[0];let url='';
@@ -93,7 +94,7 @@ async function salvar(){msg.innerHTML='';const file=arquivo.files[0];let url='';
   data.nome=nome.value;data.texto=texto.value;
   if(url){data.arquivo=url;data.is_video=file&&file.type.startsWith('video');}
   if(CUR==='foto'){data.categoria=secao.value;}
-  if(CUR==='produto'){data.preco=preco.value;data.categoria=cat.value;data.link_venda=link_venda.value.trim();
+  if(CUR==='produto'){data.preco=preco.value;data.categoria=cat.value;data.link_venda=link_venda.value.trim();data.destaque=destaque.checked;
     data.whatsapp='https://wa.me/5551985641277?text='+encodeURIComponent('Olá! Quero: '+nome.value+' ('+preco.value+')');}
   let error;
   if(EDIT){({error}=await sb.from('site_content').update({data}).eq('id',EDIT.id));}

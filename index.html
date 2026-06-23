@@ -329,7 +329,7 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
     <li><a href="#mentoria">Mentoria</a></li>
     <li><a href="#livros">Livros</a></li>
     <li><a href="#palestras">Palestras</a></li>
-    <li><a href="#loja">Loja</a></li>
+    <li><a href="/loja.html">Loja</a></li>
     <li><a href="#fe">Comunidade</a></li>
   </ul>
   <a href="https://wa.me/5551985641277?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta" target="_blank" class="nav-cta">Agendar consulta</a>
@@ -432,7 +432,7 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
         <span class="service-icon">💎</span>
         <div class="service-title">Semijoias Intencionais</div>
         <p class="service-desc">Cada peça é escolhida com intenção. Joias que adornam e lembram: você é realeza. Disponíveis na loja online com os livros da Eliane.</p>
-        <a href="#loja" class="service-link">Ver loja</a>
+        <a href="/loja.html" class="service-link">Ver loja</a>
       </div>
       <div class="service-card">
         <span class="service-icon">✝️</span>
@@ -565,7 +565,7 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
         <div class="livro-body">
           <p>Uma obra sobre o poder silencioso e transformador das mulheres que, através da fé, do acolhimento e do propósito, deixam marcas eternas nas vidas ao redor.</p>
           <div class="livro-btns">
-            <a href="#loja" class="btn-sm btn-sm-gold">Comprar</a>
+            <a href="/loja.html" class="btn-sm btn-sm-gold">Comprar</a>
             <a href="#contato" class="btn-sm btn-sm-outline">Autografado</a>
           </div>
         </div>
@@ -580,7 +580,7 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
         <div class="livro-body">
           <p>Um convite para que toda mulher reconheça e viva a nobreza que carrega em si — além dos padrões, das feridas e das histórias que a aprisionaram.</p>
           <div class="livro-btns">
-            <a href="#loja" class="btn-sm btn-sm-gold">Comprar</a>
+            <a href="/loja.html" class="btn-sm btn-sm-gold">Comprar</a>
             <a href="#contato" class="btn-sm btn-sm-outline">Autografado</a>
           </div>
         </div>
@@ -641,9 +641,9 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
 <!-- LOJA -->
 <section class="section loja" id="loja">
   <div class="section-inner">
-    <span class="section-tag">Loja Online</span>
-    <h2 class="section-title">Livros e <em>semijoias intencionais</em></h2>
-    <p class="section-sub">Cada peça e cada página foram escolhidas com intenção. Para mulheres que sabem que se adornar é um ato de reconhecer sua própria realeza.</p>
+    <span class="section-tag">Destaques</span>
+    <h2 class="section-title">Destaques da <em>loja</em></h2>
+    <p class="section-sub">Uma seleção especial. Veja todos os livros, semijoias e kits na loja completa.</p>
     <div class="loja-grid">
       <div class="produto-card">
         <div class="produto-img produto-img-1">📖</div>
@@ -682,6 +682,9 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
         <p id="kit-desc">Presenteie alguém especial com um kit de intenção e restauração.</p>
       </div>
       <a href="https://wa.me/5551985641277?text=Ol%C3%A1%2C%20quero%20o%20Kit%20Completo" id="kit-btn" target="_blank" class="btn-gold" style="white-space:nowrap">Quero o Kit</a>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="/loja.html" class="btn-gold">Ver loja completa →</a>
     </div>
   </div>
 </section>
@@ -842,7 +845,7 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
           <li><a href="#terapia">Terapia</a></li>
           <li><a href="#mentoria">Mentoria Realeza Real</a></li>
           <li><a href="#palestras">Palestras</a></li>
-          <li><a href="#loja">Loja</a></li>
+          <li><a href="/loja.html">Loja</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -889,9 +892,10 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
     var livros=prod.filter(function(p){ return cat(p).indexOf("livro")>=0; });
     var lvg=document.querySelector(".livros-grid");
     if(lvg&&livros.length){ lvg.innerHTML=livros.map(function(p){ var capa=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"background:linear-gradient(160deg,#4A1A80,#C19B3C)"; return '<div class="livro-card"><div class="livro-capa" style="'+capa+'"><div><div class="livro-capa-title">'+(p.nome||"")+'</div><div class="livro-capa-author">Eliane Barboza da Silva</div></div></div><div class="livro-body"><p>'+(p.texto||"")+'</p><div class="livro-btns"><a href="'+(p.link_venda||p.whatsapp||wa(p.nome,"o livro"))+'" target="_blank" rel="noopener" class="btn-sm btn-sm-gold">Comprar '+(p.preco||"")+'</a></div></div></div>'; }).join(""); }
-    var loja=prod.filter(function(p){ return cat(p).indexOf("livro")<0 && cat(p).indexOf("kit")<0 && cat(p).indexOf("mentoria")<0; });
+    // Capa mostra só DESTAQUES (marcados no painel); loja completa em /loja.html
+    var destaques=prod.filter(function(p){ return p.destaque && cat(p).indexOf("mentoria")<0; }).slice(0,4);
     var lg=document.querySelector(".loja-grid");
-    if(lg&&loja.length){ lg.innerHTML=loja.map(function(p){ var img=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"font-size:42px"; return '<div class="produto-card"><div class="produto-img" style="'+img+'">'+(p.arquivo?"":"💎")+'</div><div class="produto-body"><div class="produto-cat">'+(p.categoria||"")+'</div><div class="produto-name">'+(p.nome||"")+'</div>'+(p.texto?'<p class="produto-desc">'+p.texto+'</p>':"")+'<div class="produto-price">'+(p.preco||"")+'</div><a href="'+(p.link_venda||p.whatsapp||wa(p.nome))+'" target="_blank" rel="noopener" class="btn-buy" style="display:block;text-align:center;text-decoration:none">'+(p.link_venda?"Comprar agora":"Comprar pelo WhatsApp")+'</a></div></div>'; }).join(""); }
+    if(lg){ lg.innerHTML=destaques.map(function(p){ var img=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"font-size:42px"; return '<div class="produto-card"><div class="produto-img" style="'+img+'">'+(p.arquivo?"":"💎")+'</div><div class="produto-body"><div class="produto-cat">'+(p.categoria||"")+'</div><div class="produto-name">'+(p.nome||"")+'</div>'+(p.texto?'<p class="produto-desc">'+p.texto+'</p>':"")+'<div class="produto-price">'+(p.preco||"")+'</div><a href="'+(p.link_venda||p.whatsapp||wa(p.nome))+'" target="_blank" rel="noopener" class="btn-buy" style="display:block;text-align:center;text-decoration:none">'+(p.link_venda?"Comprar agora":"Comprar pelo WhatsApp")+'</a></div></div>'; }).join(""); }
     var kit=prod.filter(function(p){ return cat(p).indexOf("kit")>=0; })[0];
     var kb=document.getElementById("kit-banner");
     if(kb&&kit){ if(kit.arquivo){ kb.style.backgroundImage="linear-gradient(rgba(54,18,90,.80),rgba(54,18,90,.80)),url("+kit.arquivo+")"; kb.style.backgroundSize="cover"; kb.style.backgroundPosition="center"; }

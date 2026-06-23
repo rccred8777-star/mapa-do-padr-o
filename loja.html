@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loja — Estância Equilíbrio · Eliane Barboza</title>
+<meta name="description" content="Livros, semijoias e kits intencionais da Estância Equilíbrio.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--purple:#36125A;--gold:#C19B3C;--gold-light:#D4B86A;--cream:#FAF6F0;--cream-dark:#EDE4D8;--text:#2C1A40;--text-light:#7A6890}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:50;background:rgba(250,246,240,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(193,155,60,.2);display:flex;align-items:center;justify-content:space-between;padding:0 22px;height:64px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--purple)}
+.logo span{display:block;font-size:10px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.back{font-size:13px;color:var(--purple);font-weight:500;border:1px solid rgba(54,18,90,.2);padding:8px 14px;border-radius:30px}
+.hero{text-align:center;padding:48px 20px 8px}
+.hero .tag{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,48px);color:var(--purple);font-weight:600;margin:6px 0}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{color:var(--text-light);max-width:560px;margin:6px auto 0}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 18px 60px}
+.cat-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--purple);font-weight:600;margin:34px 0 16px;border-bottom:1px solid var(--cream-dark);padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--cream-dark);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 22px rgba(54,18,90,.05);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(54,18,90,.10)}
+.card-img{aspect-ratio:1;background:linear-gradient(160deg,#4A1A80,#C19B3C);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:44px}
+.card-body{padding:14px 15px 16px;display:flex;flex-direction:column;flex:1}
+.card-cat{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--purple);font-weight:600;margin:2px 0 4px;line-height:1.2}
+.card-desc{font-size:13px;color:var(--text-light);margin-bottom:10px;flex:1}
+.card-price{font-size:18px;font-weight:600;color:var(--text);margin-bottom:12px}
+.btn{display:block;text-align:center;background:var(--purple);color:#fff;font-weight:600;font-size:14px;padding:11px;border-radius:30px;transition:background .15s}
+.btn:hover{background:#4A1A80}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#3a2a00}
+.empty{text-align:center;color:var(--text-light);padding:60px 20px}
+footer{background:var(--purple);color:#fff;text-align:center;padding:30px 20px;font-size:13px}
+footer a{color:var(--gold-light)}
+@media(max-width:520px){.grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}.card-name{font-size:18px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="/">Estância Equilíbrio<span>Eliane Barboza</span></a>
+  <a class="back" href="/">← Voltar ao site</a>
+</header>
+
+<div class="hero">
+  <div class="tag">Loja</div>
+  <h1>Produtos <em>intencionais</em></h1>
+  <p>Livros, semijoias e kits criados para acompanhar sua jornada de restauração.</p>
+</div>
+
+<div class="wrap" id="wrap">
+  <div class="empty" id="loading">Carregando produtos…</div>
+</div>
+
+<footer>
+  Estância Equilíbrio · Eliane Barboza da Silva<br>
+  Dúvidas? <a href="https://wa.me/5551985641277" target="_blank" rel="noopener">Fale no WhatsApp</a>
+</footer>
+
+<script>
+(async function(){
+  var SUPA="https://oardxsdiwaxmpomxhfls.supabase.co", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcmR4c2Rpd2F4bXBvbXhoZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTA3NTIsImV4cCI6MjA5NzAyNjc1Mn0.NHGfn4lrllDGzXqFCC2pWsXFcfKaF9T4hdW9lPiUmi0", WA="5551985641277";
+  function wa(n){ return "https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Quero comprar: "+(n||"")); }
+  function esc(s){ return (s||"").replace(/[<>&"]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c];}); }
+  var wrap=document.getElementById("wrap");
+  // Categorias físicas exibidas na loja (mentoria fica fora).
+  var GRUPOS=[{key:"livro",titulo:"Livros",emoji:"📖"},{key:"semijoia",titulo:"Semijoias",emoji:"💎"},{key:"kit",titulo:"Kits",emoji:"🎁"}];
+  try{
+    var res=await fetch(SUPA+"/rest/v1/site_content?client_slug=eq.eliane&type=eq.produto&active=eq.true&select=data,sort_order&order=sort_order,created_at",{headers:{apikey:ANON}});
+    var items=(await res.json()).map(function(i){return i.data||{};});
+    function cat(p){ return (p.categoria||"").toLowerCase(); }
+    function card(p){
+      var img=p.arquivo?'style="background-image:url('+p.arquivo+')"':'';
+      var icon=p.arquivo?'':(cat(p).indexOf("livro")>=0?"📖":cat(p).indexOf("kit")>=0?"🎁":"💎");
+      var href=p.link_venda||p.whatsapp||wa(p.nome);
+      var label=p.link_venda?"Comprar agora":"Comprar pelo WhatsApp";
+      return '<div class="card"><div class="card-img" '+img+'>'+icon+'</div><div class="card-body">'+
+        '<div class="card-cat">'+esc(p.categoria||"Produto")+'</div>'+
+        '<div class="card-name">'+esc(p.nome)+'</div>'+
+        (p.texto?'<div class="card-desc">'+esc(p.texto)+'</div>':'<div class="card-desc"></div>')+
+        (p.preco?'<div class="card-price">'+esc(p.preco)+'</div>':'')+
+        '<a class="btn'+(p.link_venda?' gold':'')+'" href="'+href+'" target="_blank" rel="noopener">'+label+'</a>'+
+        '</div></div>';
+    }
+    var html="", total=0;
+    GRUPOS.forEach(function(g){
+      var lista=items.filter(function(p){ return cat(p).indexOf(g.key)>=0; });
+      if(!lista.length) return;
+      total+=lista.length;
+      html+='<h2 class="cat-title">'+g.emoji+' '+g.titulo+'</h2><div class="grid">'+lista.map(card).join("")+'</div>';
+    });
+    wrap.innerHTML = total ? html : '<div class="empty">Em breve novos produtos por aqui. 🌿<br>Enquanto isso, <a href="https://wa.me/'+WA+'" style="color:var(--purple);font-weight:600">fale com a Eliane no WhatsApp</a>.</div>';
+  }catch(e){ console.error(e); wrap.innerHTML='<div class="empty">Não foi possível carregar a loja agora. <a href="https://wa.me/'+WA+'" style="color:var(--purple);font-weight:600">Fale no WhatsApp</a>.</div>'; }
+})();
+</script>
+</body>
+</html>
