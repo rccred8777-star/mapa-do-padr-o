@@ -535,6 +535,19 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
   </div>
 </section>
 
+<!-- GALERIA MENTORIAS (dinâmica) -->
+<section class="section" id="galeria-mentorias" style="display:none">
+  <div class="section-inner">
+    <span class="section-tag">Mentorias</span>
+    <h2 class="section-title">Momentos das <em>mentorias</em></h2>
+    <div class="gold-divider"></div>
+    <div class="galeria-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:40px"></div>
+    <div style="text-align:center;margin-top:34px">
+      <a id="mentoria-cta" href="#contato" target="_blank" rel="noopener" class="btn-gold" style="display:none">Quero participar</a>
+    </div>
+  </div>
+</section>
+
 <!-- LIVROS -->
 <section class="section livros" id="livros">
   <div class="section-inner">
@@ -703,6 +716,16 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
   </div>
 </section>
 
+<!-- GALERIA CULTOS (dinâmica) -->
+<section class="section" id="galeria-cultos" style="display:none;background:#faf6f1">
+  <div class="section-inner">
+    <span class="section-tag">Comunidade</span>
+    <h2 class="section-title">Cultos na <em>comunidade</em></h2>
+    <div class="gold-divider"></div>
+    <div class="galeria-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:40px"></div>
+  </div>
+</section>
+
 <!-- DEPOIMENTOS -->
 <section class="section depoimentos" id="depoimentos">
   <div class="section-inner">
@@ -865,18 +888,24 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
     if(dg&&dep.length){ dg.innerHTML=dep.map(function(d){ var m=d.is_video?'<video controls preload="metadata" playsinline src="'+d.arquivo+'"></video>':'<img src="'+d.arquivo+'" style="width:100%;aspect-ratio:4/5;object-fit:cover">'; return '<div class="depo-video">'+m+'<div class="depo-vcap"><span class="stars">★★★★★</span>'+(d.nome||"Cliente")+'</div></div>'; }).join(""); }
     var livros=prod.filter(function(p){ return cat(p).indexOf("livro")>=0; });
     var lvg=document.querySelector(".livros-grid");
-    if(lvg&&livros.length){ lvg.innerHTML=livros.map(function(p){ var capa=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"background:linear-gradient(160deg,#4A1A80,#C19B3C)"; return '<div class="livro-card"><div class="livro-capa" style="'+capa+'"><div><div class="livro-capa-title">'+(p.nome||"")+'</div><div class="livro-capa-author">Eliane Barboza da Silva</div></div></div><div class="livro-body"><p>'+(p.texto||"")+'</p><div class="livro-btns"><a href="'+(p.whatsapp||wa(p.nome,"o livro"))+'" target="_blank" class="btn-sm btn-sm-gold">Comprar '+(p.preco||"")+'</a></div></div></div>'; }).join(""); }
-    var loja=prod.filter(function(p){ return cat(p).indexOf("livro")<0 && cat(p).indexOf("kit")<0; });
+    if(lvg&&livros.length){ lvg.innerHTML=livros.map(function(p){ var capa=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"background:linear-gradient(160deg,#4A1A80,#C19B3C)"; return '<div class="livro-card"><div class="livro-capa" style="'+capa+'"><div><div class="livro-capa-title">'+(p.nome||"")+'</div><div class="livro-capa-author">Eliane Barboza da Silva</div></div></div><div class="livro-body"><p>'+(p.texto||"")+'</p><div class="livro-btns"><a href="'+(p.link_venda||p.whatsapp||wa(p.nome,"o livro"))+'" target="_blank" rel="noopener" class="btn-sm btn-sm-gold">Comprar '+(p.preco||"")+'</a></div></div></div>'; }).join(""); }
+    var loja=prod.filter(function(p){ return cat(p).indexOf("livro")<0 && cat(p).indexOf("kit")<0 && cat(p).indexOf("mentoria")<0; });
     var lg=document.querySelector(".loja-grid");
-    if(lg&&loja.length){ lg.innerHTML=loja.map(function(p){ var img=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"font-size:42px"; return '<div class="produto-card"><div class="produto-img" style="'+img+'">'+(p.arquivo?"":"💎")+'</div><div class="produto-body"><div class="produto-cat">'+(p.categoria||"")+'</div><div class="produto-name">'+(p.nome||"")+'</div>'+(p.texto?'<p class="produto-desc">'+p.texto+'</p>':"")+'<div class="produto-price">'+(p.preco||"")+'</div><a href="'+(p.whatsapp||wa(p.nome))+'" target="_blank" class="btn-buy" style="display:block;text-align:center;text-decoration:none">Comprar pelo WhatsApp</a></div></div>'; }).join(""); }
+    if(lg&&loja.length){ lg.innerHTML=loja.map(function(p){ var img=p.arquivo?"background-image:url("+p.arquivo+");background-size:cover;background-position:center":"font-size:42px"; return '<div class="produto-card"><div class="produto-img" style="'+img+'">'+(p.arquivo?"":"💎")+'</div><div class="produto-body"><div class="produto-cat">'+(p.categoria||"")+'</div><div class="produto-name">'+(p.nome||"")+'</div>'+(p.texto?'<p class="produto-desc">'+p.texto+'</p>':"")+'<div class="produto-price">'+(p.preco||"")+'</div><a href="'+(p.link_venda||p.whatsapp||wa(p.nome))+'" target="_blank" rel="noopener" class="btn-buy" style="display:block;text-align:center;text-decoration:none">'+(p.link_venda?"Comprar agora":"Comprar pelo WhatsApp")+'</a></div></div>'; }).join(""); }
     var kit=prod.filter(function(p){ return cat(p).indexOf("kit")>=0; })[0];
     var kb=document.getElementById("kit-banner");
     if(kb&&kit){ if(kit.arquivo){ kb.style.backgroundImage="linear-gradient(rgba(54,18,90,.80),rgba(54,18,90,.80)),url("+kit.arquivo+")"; kb.style.backgroundSize="cover"; kb.style.backgroundPosition="center"; }
       var kt=document.getElementById("kit-title"); if(kt&&kit.nome)kt.textContent=kit.nome;
       var kd=document.getElementById("kit-desc"); if(kd&&kit.texto)kd.textContent=kit.texto;
       var kbtn=document.getElementById("kit-btn"); if(kbtn)kbtn.href=kit.whatsapp||wa(kit.nome||"Kit Completo","o"); }
-    var fg=document.getElementById("galeria-eliane");
-    if(fg&&fotos.length){ fg.querySelector(".galeria-grid").innerHTML=fotos.map(function(f){ return '<img src="'+f.arquivo+'" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:1">'; }).join(""); fg.style.display=""; }
+    function fcat(f){ return (f.categoria||"").toLowerCase(); }
+    function gal(id,list){ var s=document.getElementById(id); if(!s||!list.length)return; s.querySelector(".galeria-grid").innerHTML=list.map(function(f){ return '<img src="'+f.arquivo+'" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:1">'; }).join(""); s.style.display=""; }
+    gal("galeria-cultos", fotos.filter(function(f){ return fcat(f).indexOf("culto")>=0; }));
+    gal("galeria-mentorias", fotos.filter(function(f){ return fcat(f).indexOf("mentoria")>=0; }));
+    gal("galeria-eliane", fotos.filter(function(f){ var c=fcat(f); return c.indexOf("culto")<0 && c.indexOf("mentoria")<0; }));
+    var ment=prod.filter(function(p){ return cat(p).indexOf("mentoria")>=0; })[0];
+    var mcta=document.getElementById("mentoria-cta");
+    if(mcta&&ment){ mcta.href=ment.link_venda||ment.whatsapp||wa(ment.nome,"a mentoria"); mcta.textContent=ment.nome?("Quero: "+ment.nome+(ment.preco?" ("+ment.preco+")":"")):"Quero participar"; mcta.style.display="inline-block"; }
   }catch(e){ console.error("dyn",e); }
 })();
 </script>
