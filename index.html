@@ -802,13 +802,13 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
       <div>
         <div style="background:var(--cream);border-radius:24px;padding:44px">
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--purple);margin-bottom:24px">Envie uma mensagem</h3>
-          <form class="form">
+          <form class="form" id="lead-form">
             <div class="form-row">
-              <input type="text" placeholder="Seu nome">
-              <input type="email" placeholder="Seu email">
+              <input type="text" id="lead-nome" placeholder="Seu nome" required>
+              <input type="email" id="lead-email" placeholder="Seu email">
             </div>
-            <input type="tel" placeholder="WhatsApp">
-            <select>
+            <input type="tel" id="lead-tel" placeholder="WhatsApp" required>
+            <select id="lead-motivo">
               <option value="">Motivo do contato</option>
               <option>Consulta terapêutica</option>
               <option>Mentoria Realeza Real</option>
@@ -817,8 +817,9 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
               <option>Comunidade Tetelestai</option>
               <option>Outro</option>
             </select>
-            <textarea placeholder="Sua mensagem (opcional)"></textarea>
+            <textarea id="lead-msg" placeholder="Sua mensagem (opcional)"></textarea>
             <button type="submit" class="form-submit">Enviar mensagem</button>
+            <div id="lead-status" style="font-size:13px;margin-top:10px"></div>
           </form>
         </div>
       </div>
@@ -914,6 +915,28 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
     var mcta=document.getElementById("mentoria-cta");
     if(mcta&&ment){ mcta.href=ment.link_venda||ment.whatsapp||wa(ment.nome,"a mentoria"); mcta.textContent=ment.nome?("Quero: "+ment.nome+(ment.preco?" ("+ment.preco+")":"")):"Quero participar"; mcta.style.display="inline-block"; }
   }catch(e){ console.error("dyn",e); }
+})();
+</script>
+<script>
+/* Formulário de contato → salva no Supabase (leads) + notifica Eliane por email + abre WhatsApp */
+(function(){
+  var SUPA="https://oardxsdiwaxmpomxhfls.supabase.co", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcmR4c2Rpd2F4bXBvbXhoZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTA3NTIsImV4cCI6MjA5NzAyNjc1Mn0.NHGfn4lrllDGzXqFCC2pWsXFcfKaF9T4hdW9lPiUmi0";
+  var WA="5551985641277", NOTIFY="eliane@estanciaequilibrio.com.br";
+  var f=document.getElementById("lead-form"); if(!f) return;
+  function v(id){ var e=document.getElementById(id); return e?e.value.trim():""; }
+  function st(t,c){ var s=document.getElementById("lead-status"); if(s){ s.textContent=t; s.style.color=c==="err"?"#b03a22":c==="ok"?"#1f7d44":"#7a6890"; } }
+  f.addEventListener("submit", async function(e){
+    e.preventDefault();
+    var nome=v("lead-nome"), email=v("lead-email"), tel=v("lead-tel"), motivo=v("lead-motivo"), msg=v("lead-msg");
+    if(!nome || !tel){ st("Por favor, preencha pelo menos nome e WhatsApp.","err"); return; }
+    st("Enviando…","");
+    var lead={client_slug:"eliane",nome:nome,email:email,telefone:tel,motivo:motivo,mensagem:msg,origem:"site-contato"};
+    try{ await fetch(SUPA+"/rest/v1/leads",{method:"POST",headers:{apikey:ANON,Authorization:"Bearer "+ANON,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify(lead)}); }catch(_){}
+    try{ fetch("https://n8n.planopratico.shop/webhook/enviar-email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({to:NOTIFY,subject:"🌿 Novo contato pelo site — "+nome,text:"Nome: "+nome+"\nEmail: "+(email||"-")+"\nWhatsApp: "+tel+"\nMotivo: "+(motivo||"-")+"\n\nMensagem:\n"+(msg||"-")})}); }catch(_){}
+    var txt="Olá! Vim pelo site da Estância Equilíbrio.\nNome: "+nome+(motivo?"\nMotivo: "+motivo:"")+(msg?"\nMensagem: "+msg:"");
+    st("✓ Recebido! Te levando ao WhatsApp da Eliane…","ok");
+    setTimeout(function(){ window.location.href="https://wa.me/"+WA+"?text="+encodeURIComponent(txt); }, 700);
+  });
 })();
 </script>
 </body>
