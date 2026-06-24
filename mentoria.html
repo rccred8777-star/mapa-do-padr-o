@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentoria — Estância Equilíbrio · Eliane Barboza</title>
+<meta name="description" content="Mentoria para mulheres — restauração da identidade, propósito e equilíbrio com Eliane Barboza.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eliane.css">
+</head>
+<body>
+<header class="eq-header">
+  <a class="eq-logo" href="/">Estância <span>Equilíbrio</span></a>
+  <a class="eq-back" href="/">← Voltar ao site</a>
+</header>
+
+<div class="eq-hero">
+  <div class="eq-tag">MENTORIA</div>
+  <h1>Você foi criada para <em>reinar</em></h1>
+  <p>Um caminho de mentoria para mulheres que desejam restaurar sua identidade, descobrir seu propósito e viver com mais leveza e equilíbrio.</p>
+</div>
+
+<div class="eq-wrap">
+  <div class="eq-prose" style="text-align:center;">
+    <p>Na mentoria, unimos a profundidade da psicanálise, o autoconhecimento e o cuidado com a fé — num processo guiado, no seu ritmo, para você se reconhecer e florescer.</p>
+    <div class="eq-chips">
+      <span>👑 Identidade</span><span>🌱 Restauração</span><span>🎯 Propósito</span><span>✨ Equilíbrio</span>
+    </div>
+  </div>
+
+  <!-- galeria de fotos das mentorias (dinâmica) -->
+  <div id="galeria-mentorias" style="display:none;margin-top:46px;">
+    <h2 class="eq-cat-title" style="text-align:center;">Momentos das mentorias</h2>
+    <div class="eq-gallery" id="gal"></div>
+  </div>
+
+  <!-- faixa de venda (dinâmica: produto categoria "Mentoria") -->
+  <div class="eq-cta-band" id="cta-band">
+    <h2 id="cta-title">Quero participar da mentoria</h2>
+    <p id="cta-desc">Vagas abertas. Dê o primeiro passo rumo à sua restauração.</p>
+    <a class="eq-btn gold eq-btn-lg" id="cta-btn" href="https://wa.me/5551985641277?text=Ol%C3%A1!%20Quero%20saber%20da%20mentoria." target="_blank" rel="noopener" style="display:inline-flex;">Quero participar</a>
+  </div>
+</div>
+
+<footer class="eq-footer">
+  Estância Equilíbrio · Eliane Barboza<br>
+  <a href="https://wa.me/5551985641277" target="_blank" rel="noopener">Falar no WhatsApp</a>
+</footer>
+
+<script>
+(async function(){
+  var SUPA="https://oardxsdiwaxmpomxhfls.supabase.co", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcmR4c2Rpd2F4bXBvbXhoZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTA3NTIsImV4cCI6MjA5NzAyNjc1Mn0.NHGfn4lrllDGzXqFCC2pWsXFcfKaF9T4hdW9lPiUmi0", WA="5551985641277";
+  try{
+    var res=await fetch(SUPA+"/rest/v1/site_content?client_slug=eq.eliane&active=eq.true&select=type,data,sort_order&order=sort_order,created_at",{headers:{apikey:ANON}});
+    var items=await res.json();
+    var fotos=items.filter(function(i){return i.type==="foto" && (i.data.categoria||"").toLowerCase().indexOf("mentoria")>=0;}).map(function(i){return i.data;});
+    if(fotos.length){
+      document.getElementById("gal").innerHTML=fotos.map(function(f){return '<img src="'+f.arquivo+'" alt="">';}).join("");
+      document.getElementById("galeria-mentorias").style.display="";
+    }
+    var ment=items.filter(function(i){return i.type==="produto" && (i.data.categoria||"").toLowerCase().indexOf("mentoria")>=0;}).map(function(i){return i.data;})[0];
+    if(ment){
+      if(ment.nome) document.getElementById("cta-title").textContent=ment.nome;
+      if(ment.texto) document.getElementById("cta-desc").textContent=ment.texto;
+      var btn=document.getElementById("cta-btn");
+      btn.href=ment.link_venda||ment.whatsapp||("https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Quero a mentoria: "+(ment.nome||"")));
+      btn.textContent=ment.preco?("Quero participar — "+ment.preco):"Quero participar";
+    }
+  }catch(e){ console.error(e); }
+})();
+</script>
+</body>
+</html>

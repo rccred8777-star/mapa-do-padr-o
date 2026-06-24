@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comunidade — Estância Equilíbrio · Eliane Barboza</title>
+<meta name="description" content="Comunidade Tetelestai — fé, acolhimento e pertencimento para mulheres e famílias.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eliane.css">
+</head>
+<body>
+<header class="eq-header">
+  <a class="eq-logo" href="/">Estância <span>Equilíbrio</span></a>
+  <a class="eq-back" href="/">← Voltar ao site</a>
+</header>
+
+<div class="eq-hero">
+  <div class="eq-tag">COMUNIDADE DE FÉ</div>
+  <h1>Cultos na <em>comunidade</em></h1>
+  <p>Um espaço de fé, acolhimento e pertencimento — onde mulheres e famílias encontram restauração através da Palavra e do amor genuíno.</p>
+</div>
+
+<div class="eq-wrap">
+  <div class="eq-prose" style="text-align:center;">
+    <p>A Comunidade Tetelestai é conduzida com o mesmo coração que guia a terapia e a mentoria da Eliane: a certeza de que toda vida pode ser restaurada. Momentos de adoração, palavra e comunhão — presencial e online.</p>
+    <a class="eq-btn gold eq-btn-lg" href="https://wa.me/5551985641277?text=Ol%C3%A1!%20Quero%20participar%20da%20comunidade." target="_blank" rel="noopener" style="display:inline-flex;margin-top:8px;">Quero participar da comunidade</a>
+  </div>
+
+  <!-- galeria de cultos (dinâmica) -->
+  <div id="galeria-cultos" style="display:none;margin-top:48px;">
+    <h2 class="eq-cat-title" style="text-align:center;">Momentos dos cultos</h2>
+    <div class="eq-gallery" id="gal"></div>
+  </div>
+</div>
+
+<footer class="eq-footer">
+  Estância Equilíbrio · Eliane Barboza<br>
+  <a href="https://wa.me/5551985641277" target="_blank" rel="noopener">Falar no WhatsApp</a>
+</footer>
+
+<script>
+(async function(){
+  var SUPA="https://oardxsdiwaxmpomxhfls.supabase.co", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcmR4c2Rpd2F4bXBvbXhoZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTA3NTIsImV4cCI6MjA5NzAyNjc1Mn0.NHGfn4lrllDGzXqFCC2pWsXFcfKaF9T4hdW9lPiUmi0";
+  try{
+    var res=await fetch(SUPA+"/rest/v1/site_content?client_slug=eq.eliane&type=eq.foto&active=eq.true&select=data,sort_order&order=sort_order,created_at",{headers:{apikey:ANON}});
+    var fotos=(await res.json()).map(function(i){return i.data;}).filter(function(f){return (f.categoria||"").toLowerCase().indexOf("culto")>=0;});
+    if(fotos.length){
+      document.getElementById("gal").innerHTML=fotos.map(function(f){return '<img src="'+f.arquivo+'" alt="">';}).join("");
+      document.getElementById("galeria-cultos").style.display="";
+    }
+  }catch(e){ console.error(e); }
+})();
+</script>
+</body>
+</html>

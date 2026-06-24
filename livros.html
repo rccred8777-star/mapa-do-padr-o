@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loja — Estância Equilíbrio · Eliane Barboza</title>
-<meta name="description" content="Livros, semijoias e kits intencionais da Estância Equilíbrio.">
+<title>Livros — Estância Equilíbrio · Eliane Barboza</title>
+<meta name="description" content="Livros de Eliane Barboza — palavras que transformam e restauram.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="eliane.css">
@@ -16,48 +16,38 @@
 </header>
 
 <div class="eq-hero">
-  <div class="eq-tag">LOJA</div>
-  <h1>Produtos <em>intencionais</em></h1>
-  <p>Livros, semijoias e kits criados para acompanhar a sua jornada de cuidado e restauração.</p>
+  <div class="eq-tag">LIVROS</div>
+  <h1>Palavras que <em>transformam</em></h1>
+  <p>Obras escritas por Eliane Barboza para inspirar mulheres na jornada de autoconhecimento, fé e restauração da identidade.</p>
 </div>
 
 <div class="eq-wrap" id="wrap"><div class="eq-empty">Carregando…</div></div>
 
 <footer class="eq-footer">
   Estância Equilíbrio · Eliane Barboza<br>
-  Dúvidas? <a href="https://wa.me/5551985641277" target="_blank" rel="noopener">Fale no WhatsApp</a>
+  Quer um exemplar autografado? <a href="https://wa.me/5551985641277" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </footer>
 
 <script>
 (async function(){
   var SUPA="https://oardxsdiwaxmpomxhfls.supabase.co", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcmR4c2Rpd2F4bXBvbXhoZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTA3NTIsImV4cCI6MjA5NzAyNjc1Mn0.NHGfn4lrllDGzXqFCC2pWsXFcfKaF9T4hdW9lPiUmi0", WA="5551985641277";
-  function wa(n){ return "https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Quero comprar: "+(n||"")); }
+  function wa(n){ return "https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Quero o livro: "+(n||"")); }
   function esc(s){ return (s||"").replace(/[<>&"]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c];}); }
   var wrap=document.getElementById("wrap");
-  var GRUPOS=[{k:"livro",t:"Livros",e:"📖"},{k:"semijoia",t:"Semijoias",e:"💎"},{k:"kit",t:"Kits",e:"🎁"}];
   try{
     var res=await fetch(SUPA+"/rest/v1/site_content?client_slug=eq.eliane&type=eq.produto&active=eq.true&select=data,sort_order&order=sort_order,created_at",{headers:{apikey:ANON}});
-    var items=(await res.json()).map(function(i){return i.data||{};});
-    function cat(p){ return (p.categoria||"").toLowerCase(); }
-    function card(p){
+    var items=(await res.json()).map(function(i){return i.data||{};}).filter(function(p){return (p.categoria||"").toLowerCase().indexOf("livro")>=0;});
+    if(!items.length){ wrap.innerHTML='<div class="eq-empty">Em breve novos títulos. 📖 <a href="https://wa.me/'+WA+'" style="color:var(--purple);font-weight:600">Fale no WhatsApp</a>.</div>'; return; }
+    wrap.innerHTML='<div class="eq-grid">'+items.map(function(p){
       var img=p.arquivo?'style="background-image:url('+p.arquivo+')"':'';
-      var icon=p.arquivo?'':(cat(p).indexOf("livro")>=0?"📖":cat(p).indexOf("kit")>=0?"🎁":"💎");
       var href=p.link_venda||p.whatsapp||wa(p.nome);
-      return '<div class="eq-card"><div class="eq-card-img" '+img+'>'+icon+'</div><div class="eq-card-body">'+
-        '<div class="eq-card-cat">'+esc(p.categoria||"Produto")+'</div>'+
-        '<div class="eq-card-name">'+esc(p.nome)+'</div>'+
+      return '<div class="eq-card"><div class="eq-card-img" '+img+'>'+(p.arquivo?'':'📖')+'</div><div class="eq-card-body">'+
+        '<div class="eq-card-cat">Livro</div><div class="eq-card-name">'+esc(p.nome)+'</div>'+
         '<div class="eq-card-desc">'+esc(p.texto||"")+'</div>'+
         (p.preco?'<div class="eq-card-price">'+esc(p.preco)+'</div>':'')+
         '<a class="eq-btn'+(p.link_venda?' gold':'')+'" href="'+href+'" target="_blank" rel="noopener">'+(p.link_venda?"Comprar agora":"Comprar no WhatsApp")+'</a>'+
         '</div></div>';
-    }
-    var html="",total=0;
-    GRUPOS.forEach(function(g){
-      var lista=items.filter(function(p){return cat(p).indexOf(g.k)>=0;});
-      if(!lista.length) return; total+=lista.length;
-      html+='<h2 class="eq-cat-title">'+g.e+' '+g.t+'</h2><div class="eq-grid">'+lista.map(card).join("")+'</div>';
-    });
-    wrap.innerHTML = total ? html : '<div class="eq-empty">Em breve novos produtos. 🌿 Enquanto isso, <a href="https://wa.me/'+WA+'" style="color:var(--purple);font-weight:600">fale no WhatsApp</a>.</div>';
+    }).join("")+'</div>';
   }catch(e){ console.error(e); wrap.innerHTML='<div class="eq-empty">Não foi possível carregar agora. <a href="https://wa.me/'+WA+'" style="color:var(--purple);font-weight:600">Fale no WhatsApp</a>.</div>'; }
 })();
 </script>
