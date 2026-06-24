@@ -2,9 +2,28 @@
 <html><head><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style id="eq-responsive">
+@media (max-width:980px){
+  nav{flex-wrap:wrap;gap:14px!important;padding:18px 20px!important;}
+  nav>div{gap:14px!important;flex-wrap:wrap;justify-content:center;}
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:40px!important;}
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:430px 1fr"]{grid-template-columns:1fr!important;gap:34px!important;}
+  [style*="grid-template-columns:1.6fr 1fr 1fr"]{grid-template-columns:1fr!important;gap:28px!important;}
+  section,[style*="padding:96px 64px"],[style*="padding:64px 64px"],[style*="padding:90px 64px"],[style*="padding:88px 64px"],footer{padding-left:22px!important;padding-right:22px!important;}
+  [style*="padding:64px 64px 72px"]{padding:32px 22px 48px!important;}
+  [style*="font-size:68px"]{font-size:38px!important;}
+  [style*="font-size:50px"],[style*="font-size:46px"],[style*="font-size:44px"]{font-size:30px!important;}
+  [style*="width:480px"]{width:100%!important;max-width:480px;margin:0 auto;}
+  video[src*="hero-video"]{width:100%!important;height:auto!important;aspect-ratio:4/5;}
+  img[src*="hero.jpg"]{width:100%!important;height:auto!important;}
+  [style*="animation:eqFloat"]{display:none!important;}
+  [style*="gap:48px;border-top"]{gap:24px!important;flex-wrap:wrap;}
+}
+</style>
 </head>
 <body>
-<x-dc>
+
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -120,7 +139,7 @@
 
 
 
-<div style="width:1440px;min-height:880px;background:#FAF5EC;font-family:Inter,system-ui,sans-serif;position:relative;overflow:hidden;">
+<div style="width:100%;max-width:1280px;margin:0 auto;background:#FAF5EC;font-family:Inter,system-ui,sans-serif;position:relative;overflow:hidden;">
 
   <!-- soft decorative wash -->
   <div style="position:absolute;top:-180px;right:-160px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,#F0E7D4 0%,rgba(240,231,212,0) 70%);pointer-events:none;"></div>
@@ -129,14 +148,14 @@
   <nav style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:26px 64px;border-bottom:1px solid #EBE2D2;">
     <span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#3E2A5E;letter-spacing:0.5px;">Estância <span style="color:#B8923F;">Equilíbrio</span></span>
     <div style="display:flex;align-items:center;gap:34px;">
-      <a href="#" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">SOBRE</a>
-      <a href="#" style="font-size:13px;font-weight:700;letter-spacing:0.8px;color:#3E2A5E;text-decoration:none;">TERAPIA</a>
-      <a href="#" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">MENTORIA</a>
-      <a href="#" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">LIVROS</a>
-      <a href="#" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">PALESTRAS</a>
-      <a href="#" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">LOJA</a>
-      <a href="#" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">COMUNIDADE</a>
-      <a href="#" style="display:flex;align-items:center;gap:7px;background:#46306B;color:#fff;font-size:13px;font-weight:600;letter-spacing:0.3px;padding:10px 18px;border-radius:999px;text-decoration:none;">
+      <a href="#sobre" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">SOBRE</a>
+      <a href="#servicos" style="font-size:13px;font-weight:700;letter-spacing:0.8px;color:#3E2A5E;text-decoration:none;">TERAPIA</a>
+      <a href="/mentoria.html" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">MENTORIA</a>
+      <a href="/livros.html" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">LIVROS</a>
+      <a href="#contato" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">PALESTRAS</a>
+      <a href="/loja.html" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">LOJA</a>
+      <a href="#contato" style="font-size:13px;font-weight:600;letter-spacing:0.8px;color:#6B6152;text-decoration:none;">COMUNIDADE</a>
+      <a href="https://wa.me/5551985641277?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20conversa%20de%20terapia." style="display:flex;align-items:center;gap:7px;background:#46306B;color:#fff;font-size:13px;font-weight:600;letter-spacing:0.3px;padding:10px 18px;border-radius:999px;text-decoration:none;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.18c-.25.7-1.44 1.33-1.99 1.38-.51.05-1.16.07-1.87-.12-.43-.13-.99-.31-1.7-.62-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39.002.56.01.18.008.42-.07.66.5.25.59.84 2.04.91 2.19.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.18-.31.39-.44.52-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.71.81 2 .96.3.15.5.22.57.34.07.12.07.7-.18 1.4Z"></path></svg>
         Agendar
       </a>
@@ -171,11 +190,11 @@
 
       <!-- CTA -->
       <div style="display:flex;align-items:center;gap:22px;margin-bottom:18px;">
-        <a href="#" style="display:flex;align-items:center;gap:10px;background:#46306B;color:#fff;font-size:16px;font-weight:600;padding:18px 30px;border-radius:14px;text-decoration:none;box-shadow:0 14px 30px -10px rgba(70,48,107,0.55);">
+        <a href="https://wa.me/5551985641277?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20conversa%20de%20terapia." style="display:flex;align-items:center;gap:10px;background:#46306B;color:#fff;font-size:16px;font-weight:600;padding:18px 30px;border-radius:14px;text-decoration:none;box-shadow:0 14px 30px -10px rgba(70,48,107,0.55);">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.18c-.25.7-1.44 1.33-1.99 1.38-.51.05-1.16.07-1.87-.12-.43-.13-.99-.31-1.7-.62-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39.002.56.01.18.008.42-.07.66.5.25.59.84 2.04.91 2.19.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.18-.31.39-.44.52-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.71.81 2 .96.3.15.5.22.57.34.07.12.07.7-.18 1.4Z"></path></svg>
           Agendar consulta
         </a>
-        <a href="#" style="font-size:15px;font-weight:600;color:#46306B;text-decoration:none;border-bottom:1.5px solid #D9C28A;padding-bottom:3px;">Como funciona a terapia</a>
+        <a href="#como-funciona" style="font-size:15px;font-weight:600;color:#46306B;text-decoration:none;border-bottom:1.5px solid #D9C28A;padding-bottom:3px;">Como funciona a terapia</a>
       </div>
       <p style="display:flex;align-items:center;gap:8px;font-size:13.5px;color:#8A7F6D;font-weight:500;margin:0 0 40px;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8923F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
@@ -223,7 +242,7 @@
             <span style="flex:1;text-align:center;font-size:12.5px;font-weight:600;color:#46306B;background:#F4F0FA;border-radius:9px;padding:9px 0;">Online</span>
             <span style="flex:1;text-align:center;font-size:12.5px;font-weight:600;color:#7A6E5C;background:#F7F2E8;border-radius:9px;padding:9px 0;">Presencial</span>
           </div>
-          <a href="#" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#B8923F;color:#fff;font-size:14px;font-weight:600;padding:12px;border-radius:11px;text-decoration:none;">
+          <a href="https://wa.me/5551985641277?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20conversa%20de%20terapia." style="display:flex;align-items:center;justify-content:center;gap:8px;background:#B8923F;color:#fff;font-size:14px;font-weight:600;padding:12px;border-radius:11px;text-decoration:none;">
             Ver horários
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
           </a>
@@ -247,7 +266,7 @@
   </div>
 
   <!-- ===================== COMO FUNCIONA ===================== -->
-  <section style="position:relative;padding:96px 64px 80px;">
+  <section style="position:relative;padding:96px 64px 80px;" id="como-funciona">
     <div style="text-align:center;max-width:620px;margin:0 auto 56px;">
       <span style="font-size:12px;font-weight:700;letter-spacing:1.6px;color:#B8923F;">COMO FUNCIONA</span>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#3E2A5E;margin:14px 0 14px;letter-spacing:-0.4px;line-height:1.1;">Três passos simples para começar</h2>
@@ -273,7 +292,7 @@
   </section>
 
   <!-- ===================== SERVIÇOS ===================== -->
-  <section style="position:relative;padding:64px 64px 88px;">
+  <section style="position:relative;padding:64px 64px 88px;" id="servicos">
     <div style="text-align:center;max-width:620px;margin:0 auto 50px;">
       <span style="font-size:12px;font-weight:700;letter-spacing:1.6px;color:#B8923F;">O QUE CUIDAMOS JUNTAS</span>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#3E2A5E;margin:14px 0 0;letter-spacing:-0.4px;line-height:1.1;">Cuidado para cada fase da sua jornada</h2>
@@ -325,7 +344,7 @@
   </section>
 
   <!-- ===================== SOBRE ===================== -->
-  <section style="position:relative;background:#F1ECF5;padding:88px 64px;">
+  <section style="position:relative;background:#F1ECF5;padding:88px 64px;" id="sobre">
     <div style="display:grid;grid-template-columns:430px 1fr;gap:64px;max-width:1100px;margin:0 auto;align-items:center;">
       <div style="position:relative;">
         <div style="position:absolute;top:-16px;left:-16px;width:130px;height:130px;border-radius:24px;background:#E2D6EE;z-index:0;"></div>
@@ -343,7 +362,7 @@
           <span style="font-size:13px;font-weight:600;color:#46306B;background:#fff;border:1px solid #E2D6EE;border-radius:999px;padding:9px 16px;">+500 atendimentos</span>
           <span style="font-size:13px;font-weight:600;color:#46306B;background:#fff;border:1px solid #E2D6EE;border-radius:999px;padding:9px 16px;">Autora de 2 livros</span>
         </div>
-        <a href="#" style="display:inline-flex;align-items:center;gap:9px;background:#46306B;color:#fff;font-size:15px;font-weight:600;padding:15px 26px;border-radius:13px;text-decoration:none;box-shadow:0 14px 30px -12px rgba(70,48,107,0.5);">
+        <a href="https://wa.me/5551985641277?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20conversa%20de%20terapia." style="display:inline-flex;align-items:center;gap:9px;background:#46306B;color:#fff;font-size:15px;font-weight:600;padding:15px 26px;border-radius:13px;text-decoration:none;box-shadow:0 14px 30px -12px rgba(70,48,107,0.5);">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.18c-.25.7-1.44 1.33-1.99 1.38-.51.05-1.16.07-1.87-.12-.43-.13-.99-.31-1.7-.62-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39.002.56.01.18.008.42-.07.66.5.25.59.84 2.04.91 2.19.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.18-.31.39-.44.52-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.71.81 2 .96.3.15.5.22.57.34.07.12.07.7-.18 1.4Z"></path></svg>
           Agendar uma conversa
         </a>
@@ -352,7 +371,7 @@
   </section>
 
   <!-- ===================== DEPOIMENTOS ===================== -->
-  <section style="position:relative;padding:90px 64px 84px;">
+  <section style="position:relative;padding:90px 64px 84px;" id="depoimentos">
     <div style="text-align:center;max-width:620px;margin:0 auto 50px;">
       <span style="font-size:12px;font-weight:700;letter-spacing:1.6px;color:#B8923F;">DEPOIMENTOS</span>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#3E2A5E;margin:14px 0 0;letter-spacing:-0.4px;line-height:1.1;">Histórias de quem reencontrou o equilíbrio</h2>
@@ -387,7 +406,7 @@
   </section>
 
   <!-- ===================== FAQ ===================== -->
-  <section style="position:relative;background:#FBF8F1;padding:88px 64px;">
+  <section style="position:relative;background:#FBF8F1;padding:88px 64px;" id="faq">
     <div style="text-align:center;max-width:620px;margin:0 auto 50px;">
       <span style="font-size:12px;font-weight:700;letter-spacing:1.6px;color:#B8923F;">DÚVIDAS FREQUENTES</span>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#3E2A5E;margin:14px 0 0;letter-spacing:-0.4px;line-height:1.1;">Tudo o que você precisa saber</h2>
@@ -420,6 +439,53 @@
     </div>
   </section>
 
+  <!-- ===================== CONTATO / LEAD ===================== -->
+  <section id="contato" style="position:relative;background:#F1ECF5;padding:88px 64px;">
+    <div style="max-width:640px;margin:0 auto 32px;text-align:center;">
+      <span style="font-size:12px;font-weight:700;letter-spacing:1.6px;color:#B8923F;">FALE COMIGO</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#3E2A5E;margin:14px 0 12px;letter-spacing:-0.4px;line-height:1.1;">Vamos conversar?</h2>
+      <p style="font-size:16px;line-height:1.7;color:#6B6152;margin:0;">Deixe seu contato que eu te respondo pelo WhatsApp — sem compromisso.</p>
+    </div>
+    <form id="lead-form" style="max-width:560px;margin:0 auto;background:#fff;border:1px solid #E2D6EE;border-radius:24px;padding:34px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 50px -24px rgba(62,42,94,0.3);">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <input id="lead-nome" placeholder="Seu nome" required style="flex:1;min-width:200px;border:1.5px solid #E7DDC9;border-radius:12px;padding:14px 16px;font-size:15px;font-family:inherit;color:#3E2A5E;outline:none;background:#FBF8F1;">
+        <input id="lead-email" type="email" placeholder="Seu e-mail" style="flex:1;min-width:200px;border:1.5px solid #E7DDC9;border-radius:12px;padding:14px 16px;font-size:15px;font-family:inherit;color:#3E2A5E;outline:none;background:#FBF8F1;">
+      </div>
+      <input id="lead-tel" type="tel" placeholder="WhatsApp (com DDD)" required style="border:1.5px solid #E7DDC9;border-radius:12px;padding:14px 16px;font-size:15px;font-family:inherit;color:#3E2A5E;outline:none;background:#FBF8F1;">
+      <select id="lead-motivo" style="border:1.5px solid #E7DDC9;border-radius:12px;padding:14px 16px;font-size:15px;font-family:inherit;color:#6B6152;outline:none;background:#FBF8F1;">
+        <option value="">Motivo do contato</option>
+        <option>Terapia / consulta</option>
+        <option>Mentoria</option>
+        <option>Palestra / evento</option>
+        <option>Outro</option>
+      </select>
+      <textarea id="lead-msg" placeholder="Mensagem (opcional)" rows="3" style="border:1.5px solid #E7DDC9;border-radius:12px;padding:14px 16px;font-size:15px;font-family:inherit;color:#3E2A5E;outline:none;background:#FBF8F1;resize:vertical;"></textarea>
+      <button type="submit" style="background:#46306B;color:#fff;font-size:16px;font-weight:600;padding:16px;border:none;border-radius:13px;cursor:pointer;box-shadow:0 14px 30px -12px rgba(70,48,107,0.5);">Enviar e falar no WhatsApp</button>
+      <div id="lead-status" style="font-size:13.5px;text-align:center;color:#8A7F6D;"></div>
+    </form>
+  </section>
+  <script>
+  (function(){
+    var SUPA="https://oardxsdiwaxmpomxhfls.supabase.co", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcmR4c2Rpd2F4bXBvbXhoZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTA3NTIsImV4cCI6MjA5NzAyNjc1Mn0.NHGfn4lrllDGzXqFCC2pWsXFcfKaF9T4hdW9lPiUmi0";
+    var WA="5551985641277", NOTIFY="eliane@estanciaequilibrio.com.br";
+    var f=document.getElementById("lead-form"); if(!f) return;
+    function v(id){ var e=document.getElementById(id); return e?e.value.trim():""; }
+    function st(t,c){ var s=document.getElementById("lead-status"); if(s){ s.textContent=t; s.style.color=c==="err"?"#b03a22":c==="ok"?"#1B7D44":"#8A7F6D"; } }
+    f.addEventListener("submit", async function(e){
+      e.preventDefault();
+      var nome=v("lead-nome"), email=v("lead-email"), tel=v("lead-tel"), motivo=v("lead-motivo"), msg=v("lead-msg");
+      if(!nome || !tel){ st("Preencha pelo menos nome e WhatsApp.","err"); return; }
+      st("Enviando\u2026","");
+      var lead={client_slug:"eliane",nome:nome,email:email,telefone:tel,motivo:motivo,mensagem:msg,origem:"site-contato"};
+      try{ await fetch(SUPA+"/rest/v1/leads",{method:"POST",headers:{apikey:ANON,Authorization:"Bearer "+ANON,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify(lead)}); }catch(_){}
+      try{ fetch("https://n8n.planopratico.shop/webhook/enviar-email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({to:NOTIFY,subject:"\ud83c\udf3f Novo contato pelo site \u2014 "+nome,text:"Nome: "+nome+"\nEmail: "+(email||"-")+"\nWhatsApp: "+tel+"\nMotivo: "+(motivo||"-")+"\n\nMensagem:\n"+(msg||"-")})}); }catch(_){}
+      var txt="Ol\u00e1! Vim pelo site da Est\u00e2ncia Equil\u00edbrio.\nNome: "+nome+(motivo?"\nMotivo: "+motivo:"")+(msg?"\nMensagem: "+msg:"");
+      st("\u2713 Recebido! Te levando ao WhatsApp\u2026","ok");
+      setTimeout(function(){ window.location.href="https://wa.me/"+WA+"?text="+encodeURIComponent(txt); }, 700);
+    });
+  })();
+  </script>
+
   <!-- ===================== CTA FINAL ===================== -->
   <section style="position:relative;background:linear-gradient(135deg,#46306B 0%,#3A2657 60%,#2E1F45 100%);padding:96px 64px;overflow:hidden;">
     <div style="position:absolute;top:-120px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(184,146,63,0.12);"></div>
@@ -429,7 +495,7 @@
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:#fff;margin:16px 0 18px;letter-spacing:-0.5px;line-height:1.1;">Pronta para recomeçar com mais leveza?</h2>
       <p style="font-size:17px;line-height:1.7;color:#D8CCE8;margin:0 0 34px;">Sua jornada de cuidado pode começar hoje. Agende uma conversa, sem compromisso, e descubra como a terapia pode transformar o seu equilíbrio.</p>
       <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
-        <a href="#" style="display:flex;align-items:center;gap:10px;background:#B8923F;color:#fff;font-size:16px;font-weight:700;padding:18px 34px;border-radius:14px;text-decoration:none;box-shadow:0 18px 38px -12px rgba(184,146,63,0.6);">
+        <a href="https://wa.me/5551985641277?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20conversa%20de%20terapia." style="display:flex;align-items:center;gap:10px;background:#B8923F;color:#fff;font-size:16px;font-weight:700;padding:18px 34px;border-radius:14px;text-decoration:none;box-shadow:0 18px 38px -12px rgba(184,146,63,0.6);">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.18c-.25.7-1.44 1.33-1.99 1.38-.51.05-1.16.07-1.87-.12-.43-.13-.99-.31-1.7-.62-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39.002.56.01.18.008.42-.07.66.5.25.59.84 2.04.91 2.19.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.18-.31.39-.44.52-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.71.81 2 .96.3.15.5.22.57.34.07.12.07.7-.18 1.4Z"></path></svg>
           Agendar consulta
         </a>
@@ -451,10 +517,10 @@
       <div>
         <p style="font-size:12px;font-weight:700;letter-spacing:1px;color:#7E7196;margin:0 0 16px;">NAVEGAÇÃO</p>
         <div style="display:flex;flex-direction:column;gap:11px;">
-          <a href="#" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Sobre</a>
-          <a href="#" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Terapia</a>
-          <a href="#" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Mentoria</a>
-          <a href="#" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Livros</a>
+          <a href="#sobre" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Sobre</a>
+          <a href="#servicos" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Terapia</a>
+          <a href="/mentoria.html" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Mentoria</a>
+          <a href="/livros.html" style="font-size:14px;color:#C9BEDC;text-decoration:none;">Livros</a>
         </div>
       </div>
       <div>
@@ -478,17 +544,8 @@
   </footer>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:880}}">class Component extends DCLogic {
-  componentDidMount() {
-    const set = () => {
-      const v = document.querySelector('video')
-      if (v) { v.loop = true; v.muted = true; v.play().catch(() => {}) }
-    }
-    set(); setTimeout(set, 200); setTimeout(set, 800)
-  }
-  renderVals() { return {} }
-}</script>
+
+<script>document.querySelectorAll("video").forEach(function(v){v.muted=true;v.loop=true;v.play&&v.play().catch(function(){})});</script>
 
 
 </body></html>
