@@ -1,0 +1,73 @@
+/* Estância Equilíbrio — estilos compartilhados das sub-páginas (design novo) */
+:root{
+  --cream:#FAF5EC; --purple:#3E2A5E; --purple2:#46306B; --gold:#B8923F;
+  --gold-soft:#E3CD93; --text:#6B6152; --muted:#9C9079; --card:#fff;
+  --border:#F0E8D8; --lav:#F1ECF5;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--cream);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+a{color:inherit;}
+.serif{font-family:'Cormorant Garamond',serif;}
+
+/* header */
+.eq-header{position:sticky;top:0;z-index:50;background:rgba(250,245,236,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid #EBE2D2;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;}
+.eq-logo{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;color:var(--purple);letter-spacing:.5px;text-decoration:none;}
+.eq-logo span{color:var(--gold);}
+.eq-back{font-size:13px;font-weight:600;letter-spacing:.4px;color:var(--purple2);text-decoration:none;border:1px solid #E2D6EE;
+  padding:9px 16px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;}
+
+/* hero da sub-página */
+.eq-hero{text-align:center;max-width:680px;margin:0 auto;padding:64px 24px 8px;}
+.eq-tag{font-size:12px;font-weight:700;letter-spacing:1.6px;color:var(--gold);}
+.eq-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,6vw,56px);font-weight:600;color:var(--purple);
+  margin:14px 0 14px;letter-spacing:-.5px;line-height:1.08;}
+.eq-hero h1 em{font-style:italic;color:var(--gold);}
+.eq-hero p{font-size:16px;line-height:1.7;color:var(--text);margin:0;}
+
+/* conteúdo */
+.eq-wrap{max-width:1100px;margin:0 auto;padding:34px 24px 70px;}
+.eq-cat-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--purple);font-weight:600;margin:38px 0 18px;}
+.eq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px;}
+.eq-card{background:var(--card);border:1px solid var(--border);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 10px 30px -18px rgba(62,42,94,.18);transition:transform .15s,box-shadow .15s;}
+.eq-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -18px rgba(62,42,94,.28);}
+.eq-card-img{aspect-ratio:1;background:linear-gradient(150deg,var(--purple2),var(--gold));background-size:cover;background-position:center;
+  display:flex;align-items:center;justify-content:center;font-size:44px;}
+.eq-card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+.eq-card-cat{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+.eq-card-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--purple);font-weight:600;margin:3px 0 6px;line-height:1.2;}
+.eq-card-desc{font-size:14px;line-height:1.55;color:var(--text);margin-bottom:12px;flex:1;}
+.eq-card-price{font-size:18px;font-weight:700;color:var(--purple);margin-bottom:14px;}
+
+/* galeria de fotos */
+.eq-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
+.eq-gallery img{width:100%;border-radius:16px;object-fit:cover;aspect-ratio:1;display:block;}
+
+/* botões */
+.eq-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--purple2);color:#fff;font-size:14px;font-weight:600;
+  padding:13px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;}
+.eq-btn.gold{background:var(--gold);}
+.eq-btn-lg{padding:16px 30px;font-size:16px;border-radius:14px;box-shadow:0 14px 30px -12px rgba(70,48,107,.5);}
+
+/* bloco de texto/intro */
+.eq-prose{max-width:720px;margin:0 auto;}
+.eq-prose p{font-size:16px;line-height:1.8;color:#5C5346;margin:0 0 18px;}
+.eq-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:6px 0 8px;}
+.eq-chips span{font-size:13px;font-weight:600;color:var(--purple2);background:#fff;border:1px solid #E2D6EE;border-radius:999px;padding:9px 16px;}
+
+/* faixa de venda (mentoria) */
+.eq-cta-band{background:linear-gradient(135deg,#46306B,#2E1F45);border-radius:26px;padding:46px 34px;text-align:center;color:#fff;margin-top:40px;}
+.eq-cta-band h2{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;margin:0 0 10px;}
+.eq-cta-band p{color:#D8CCE8;font-size:15px;line-height:1.6;margin:0 0 24px;}
+
+/* footer */
+.eq-footer{background:#241733;color:#A99CC0;text-align:center;padding:40px 24px;font-size:13px;}
+.eq-footer a{color:var(--gold-soft);}
+.eq-empty{text-align:center;color:var(--muted);padding:50px 20px;font-size:15px;}
+
+@media (max-width:600px){
+  .eq-header{padding:14px 18px;}
+  .eq-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;}
+  .eq-card-name{font-size:18px;}
+}
