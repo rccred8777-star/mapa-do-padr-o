@@ -921,7 +921,7 @@ footer{background:var(--purple);color:rgba(255,255,255,0.6);padding:60px 40px 30
 /* Formulário de contato → salva no Supabase (leads) + notifica Eliane por email + abre WhatsApp */
 (function(){
   var SUPA="https://oardxsdiwaxmpomxhfls.supabase.co", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hcmR4c2Rpd2F4bXBvbXhoZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NTA3NTIsImV4cCI6MjA5NzAyNjc1Mn0.NHGfn4lrllDGzXqFCC2pWsXFcfKaF9T4hdW9lPiUmi0";
-  var WA="5551985641277", NOTIFY="eliane@estanciaequilibrio.com.br";
+  var WA="5551985641277", NOTIFY="elianecrisbarboza@gmail.com";
   var f=document.getElementById("lead-form"); if(!f) return;
   function v(id){ var e=document.getElementById(id); return e?e.value.trim():""; }
   function st(t,c){ var s=document.getElementById("lead-status"); if(s){ s.textContent=t; s.style.color=c==="err"?"#b03a22":c==="ok"?"#1f7d44":"#7a6890"; } }
